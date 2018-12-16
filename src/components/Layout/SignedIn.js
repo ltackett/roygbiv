@@ -20,8 +20,6 @@ const SignedInContainer = styled.div`
 
 const SignedIn = (props) => {
   const { currentUser } = props.firebase.auth()
-  console.log({ currentUser });
-
 
   const handleSignOut = (event) => {
     event.preventDefault()
