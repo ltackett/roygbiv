@@ -10,6 +10,8 @@ import ChartSelector from 'components/ChartSelector'
 import Chart from 'components/Chart'
 import Layout from 'components/Layout'
 
+
+
 const App = (props) => {
   if (!props.charts && !props.chartsData) {
     return <div>Loading...</div>
@@ -30,6 +32,8 @@ const App = (props) => {
     return sorted
   }
 
+  const { loggedIn } = props.auth
+
   const routeProps = {
     charts: sortedCharts(),
     chartsData: props.chartsData,
@@ -40,16 +44,21 @@ const App = (props) => {
   return (
     <Layout {...routeProps}>
       <Router>
-        <Switch>
-          <Route exact path="/" render={(props) => <ChartSelector {...props} {...routeProps} />} />
-          <Route path="/charts/:id" render={(props) => <Chart {...props} {...routeProps} />} />
-        </Switch>
+        {loggedIn ? (
+          <Switch>
+            <Route exact path="/" render={(props) => <ChartSelector {...props} {...routeProps} />} />
+            <Route path="/charts/:id" render={(props) => <Chart {...props} {...routeProps} />} />
+          </Switch>
+        ) : (
+          <div>Not logged in</div>
+        )}
       </Router>
     </Layout>
   )
 }
 
 const mapStateToProps = (state) => ({
+  auth: state.auth,
   charts: state.firestore.ordered.charts,
   chartsData: state.firestore.data.charts
 })
