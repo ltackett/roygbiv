@@ -6,8 +6,9 @@ import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 
 import './App.css';
 
-import ChartSelector from './components/ChartSelector'
-import Chart from './components/Chart'
+import ChartSelector from 'components/ChartSelector'
+import Chart from 'components/Chart'
+import Layout from 'components/Layout'
 
 const App = (props) => {
   if (!props.charts && !props.chartsData) {
@@ -37,12 +38,14 @@ const App = (props) => {
   }
 
   return (
-    <Router>
-      <Switch>
-        <Route exact path="/" render={(props) => <ChartSelector {...props} {...routeProps} />} />
-        <Route path="/charts/:id" render={(props) => <Chart {...props} {...routeProps} />} />
-      </Switch>
-    </Router>
+    <Layout {...routeProps}>
+      <Router>
+        <Switch>
+          <Route exact path="/" render={(props) => <ChartSelector {...props} {...routeProps} />} />
+          <Route path="/charts/:id" render={(props) => <Chart {...props} {...routeProps} />} />
+        </Switch>
+      </Router>
+    </Layout>
   )
 }
 
