@@ -82,11 +82,11 @@ class SignedOut extends React.Component {
 
                 <Form onSubmit={this.handleSignIn}>
                   <Form.Field>
-                    <input name="email" value={this.state.email} onChange={this.handleChange} placeholder="Email" />
+                    <Form.Input autoFocus name="email" value={this.state.email} onChange={this.handleChange} placeholder="Email" />
                   </Form.Field>
 
                   <Form.Field>
-                    <input type="password" name="password" value={this.state.password} onChange={this.handleChange} placeholder="Password" />
+                    <Form.Input type="password" name="password" value={this.state.password} onChange={this.handleChange} placeholder="Password" />
                   </Form.Field>
 
                   <input type="submit" style={{ visibility: 'hidden', position: 'absolute' }} />
