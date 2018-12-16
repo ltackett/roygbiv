@@ -5,7 +5,13 @@ const Header = styled.header`
   position: absolute;
   top: 0;
   right: 0;
+  bottom: 0;
   z-index: 1;
+
+  display: flex;
+  flex-direction: column-reverse;
+  justify-content: space-between;
+  padding: 0.25rem 0;
 `
 
 const ChartOptions = styled.div`
@@ -14,8 +20,9 @@ const ChartOptions = styled.div`
   right: 0;
   bottom: 0;
   left: 0;
+
   display: flex;
-  flex-direction: column;
+  flex-direction: column-reverse;
   align-items: stretch;
   align-content: stretch;
 `
@@ -47,13 +54,6 @@ const Button = styled.button`
 
   span {
     display: inline-block;
-    box-shadow: 0rem 0.175rem 0.5rem rgba(0,0,0,0.75);
-    background: #fff;
-    border-radius: 10em;
-    width: 1.15em;
-    height: 1.15em;
-    text-align: center;
-    padding: 0.25rem;
   }
 
   &:active span {
@@ -114,8 +114,8 @@ class Chart extends Component {
     return (
       <Fragment>
         <Header>
-          <Button neg onClick={this.handleMoveDown}><span role="img" aria-label="Move Down">😰</span></Button>
-          <Button pos onClick={this.handleMoveUp}><span role="img" aria-label="Move Up">😀</span></Button>
+          <Button neg onClick={this.handleMoveDown}><span role="img" aria-label="Move Down">👎</span></Button>
+          <Button pos onClick={this.handleMoveUp}><span role="img" aria-label="Move Up">👍</span></Button>
         </Header>
 
         <ChartOptions>
