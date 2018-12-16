@@ -8,7 +8,6 @@ import {
   Grid,
   Header,
   Icon,
-  Input,
   Modal
 } from 'semantic-ui-react'
 import styled from 'styled-components'
@@ -82,7 +81,7 @@ class SignedOut extends React.Component {
 
                 <Form onSubmit={this.handleSignIn}>
                   <Form.Field>
-                    <Form.Input autoFocus name="email" value={this.state.email} onChange={this.handleChange} placeholder="Email" />
+                    <Form.Input autoFocus type="email" name="email" value={this.state.email} onChange={this.handleChange} placeholder="Email" />
                   </Form.Field>
 
                   <Form.Field>
