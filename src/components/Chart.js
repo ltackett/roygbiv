@@ -123,8 +123,8 @@ class Chart extends Component {
             <Color color={c} key={c}>
               {this.state.clipAt === i &&
                 <Clip>
-                  {i <= 1 &&           <span role="img" aria-label="icon">🚫</span>}
-                  {i >= 2 && i <= 5 && <span role="img" aria-label="icon">💲</span>}
+                  {i <= 0 &&           <span role="img" aria-label="icon">🚫</span>}
+                  {i >= 1 && i <= 5 && <span role="img" aria-label="icon">💲</span>}
                   {i >= 6 &&           <span role="img" aria-label="icon">💲 💲 🤑</span> }
 
                   {" "}
