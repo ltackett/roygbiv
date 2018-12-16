@@ -12,53 +12,45 @@ import Layout from 'components/Layout'
 
 
 
-const App = (props) => {
-  if (!props.charts && !props.chartsData) {
-    return <div>Loading...</div>
+class App extends React.Component {
+  state = {
+    loaded: false
   }
 
-  const sortedCharts = () => {
-    const sorted = [...props.charts]
-    sorted.sort((a, b) => {
-      const nameA = a.name.toUpperCase();
-      const nameB = b.name.toUpperCase();
+  componentDidUpdate() {
+    const { currentUser, isInitializing } = this.props
 
-      if (nameA < nameB) return -1
-      if (nameA > nameB) return 1
-
-      return 0
-    })
-
-    return sorted
+    if (currentUser.isLoaded && !isInitializing && !this.state.loaded) {
+      this.setState({ loaded: true })
+    }
   }
 
-  const { loggedIn } = props.auth
+  render() {
+    if (!this.state.loaded) {
+      return <div>Loading...</div>
+    }
 
-  const routeProps = {
-    charts: sortedCharts(),
-    chartsData: props.chartsData,
-    firebase: props.firebase,
-    firestore: props.firestore,
+    return (
+      <Layout {...this.props}>
+        <Router>
+          {this.props.auth.loggedIn ? (
+            <Switch>
+              <Route exact path="/" render={(routeProps) => <ChartSelector {...routeProps} {...this.props} />} />
+              <Route path="/charts/:id" render={(routeProps) => <Chart {...routeProps} {...this.props} />} />
+            </Switch>
+          ) : (
+            <div>Not logged in</div>
+          )}
+        </Router>
+      </Layout>
+    )
   }
-
-  return (
-    <Layout {...routeProps}>
-      <Router>
-        {loggedIn ? (
-          <Switch>
-            <Route exact path="/" render={(props) => <ChartSelector {...props} {...routeProps} />} />
-            <Route path="/charts/:id" render={(props) => <Chart {...props} {...routeProps} />} />
-          </Switch>
-        ) : (
-          <div>Not logged in</div>
-        )}
-      </Router>
-    </Layout>
-  )
 }
 
 const mapStateToProps = (state) => ({
   auth: state.auth,
+  currentUser: state.firebase.auth,
+  isInitializing: state.firebase.isInitializing,
   charts: state.firestore.ordered.charts,
   chartsData: state.firestore.data.charts
 })

@@ -22,8 +22,11 @@ export const signOut = () => {
 
     dispatch({ type: 'AUTH_LOADING' })
     firebase.auth().signOut().then(() => {
-      dispatch({ type: 'LOGOUT' })
-      dispatch({ type: 'AUTH_LOADED' })
+      // Wait one frame before dispatching logout to prevent race condition
+      setTimeout(() => {
+        dispatch({ type: 'LOGOUT' })
+        dispatch({ type: 'AUTH_LOADED' })
+      });
     })
   }
 }

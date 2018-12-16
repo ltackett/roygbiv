@@ -1,5 +1,4 @@
 import React from 'react'
-import { connect } from 'react-redux'
 import { signIn } from 'store/actions/authActions'
 
 import {
@@ -38,8 +37,10 @@ class SignedOut extends React.Component {
     password: ''
   }
 
-  componentDidMount() {
-    if (this.props.firebase.auth().currentUser) {
+  componentDidUpdate() {
+    const { currentUser } = this.props
+
+    if (currentUser && currentUser.uid) {
       this.props.dispatch({ type: 'LOGIN_SUCCESS' })
     }
   }
@@ -59,7 +60,8 @@ class SignedOut extends React.Component {
   }
 
   render() {
-    const { auth } = this.props
+    const { auth, currentUser } = this.props
+    if (currentUser && !currentUser.isEmpty) return <div>Loading</div>
 
     return (
       <SignedOutContainer>
@@ -109,4 +111,4 @@ class SignedOut extends React.Component {
   }
 }
 
-export default connect()(SignedOut)
+export default SignedOut

@@ -1,5 +1,4 @@
 import React from 'react'
-import { connect } from 'react-redux'
 import { signOut } from 'store/actions/authActions'
 import styled from 'styled-components'
 
@@ -19,7 +18,9 @@ const SignedInContainer = styled.div`
 `
 
 const SignedIn = (props) => {
-  const { currentUser } = props.firebase.auth()
+  if (!props.auth) return <div>Loading...</div>
+
+  const { currentUser } = props
 
   const handleSignOut = (event) => {
     event.preventDefault()
@@ -38,4 +39,4 @@ const SignedIn = (props) => {
   )
 }
 
-export default connect()(SignedIn)
+export default SignedIn
