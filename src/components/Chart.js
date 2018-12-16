@@ -129,7 +129,7 @@ class Chart extends Component {
 
                   {" "}
 
-                  {i === 0 && <span role="img" aria-label="icon">😵</span>}
+                  {i === 0 && <span role="img" aria-label="icon">💩</span>}
                   {i === 1 && <span role="img" aria-label="icon">😱</span>}
                   {i === 2 && <span role="img" aria-label="icon">😕</span>}
                   {i === 3 && <span role="img" aria-label="icon">☺️</span>}
