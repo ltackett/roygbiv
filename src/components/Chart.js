@@ -123,19 +123,23 @@ class Chart extends Component {
             <Color color={c} key={c}>
               {this.state.clipAt === i &&
                 <Clip>
-                  {i <= 0 &&           <span role="img" aria-label="icon">🚫</span>}
-                  {i >= 1 && i <= 5 && <span role="img" aria-label="icon">💲</span>}
-                  {i >= 6 &&           <span role="img" aria-label="icon">💲 💲 🤑</span> }
+                  <span role="img" aria-label="icon">
+                    {i <= 0 &&           "🚫"}
+                    {i >= 1 && i <= 5 && "💲"}
+                    {i >= 6 &&           "💲 💲 🤑"}
+                  </span>
 
                   {" "}
 
-                  {i === 0 && <span role="img" aria-label="icon">💩</span>}
-                  {i === 1 && <span role="img" aria-label="icon">😱</span>}
-                  {i === 2 && <span role="img" aria-label="icon">😕</span>}
-                  {i === 3 && <span role="img" aria-label="icon">☺️</span>}
-                  {i === 4 && <span role="img" aria-label="icon">😊</span>}
-                  {i === 5 && <span role="img" aria-label="icon">😃</span>}
-                  {i === 6 && <span role="img" aria-label="icon">😍</span>}
+                  <span role="img" aria-label="icon">
+                    {i === 0 && "💩"}
+                    {i === 1 && "😱"}
+                    {i === 2 && "😕"}
+                    {i === 3 && "☺️"}
+                    {i === 4 && "😊"}
+                    {i === 5 && "😃"}
+                    {i === 6 && "😍"}
+                  </span>
                 </Clip>
               }
             </Color>
